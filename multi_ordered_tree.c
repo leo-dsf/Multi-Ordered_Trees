@@ -110,7 +110,7 @@ int main(int argc,char **argv)
   int student_number = atoi(argv[1]);
   if(student_number < 1 || student_number >= 1000000)
   {
-    fprintf(stderr,"Bad student number (%d) --- must be an integer belonging to [1,1000000{\n",student_number);
+    fprintf(stderr,"Bad student number (%d) --- must be an integer belonging to [1,1000000[\n",student_number);
     return 1;
   }
   int n_persons = atoi(argv[2]);
