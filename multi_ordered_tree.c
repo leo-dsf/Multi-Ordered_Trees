@@ -11,7 +11,6 @@
 #include <string.h>
 #include "AED_2021_A02.h"
 
-
 //
 // the custom tree node structure
 //
@@ -28,7 +27,6 @@ typedef struct tree_node_s
   struct tree_node_s *right[3];                         // right pointers (one for each index) --- right means larger
 }
 tree_node_t;
-
 
 //
 // the node comparison function (do not change this)
@@ -53,42 +51,79 @@ int compare_tree_nodes(tree_node_t *node1,tree_node_t *node2,int main_idx)
   return 0;
 }
 
-
 //
 // tree insertion routine (place your code here)
 //
 
-void tree_insert( ... )
+void tree_insert(tree_node_t **roots, tree_node_t *node, int main_index)
 {
+    /* If the tree is empty, return a new Node */
+    if (roots[main_index] == NULL)
+    {
+        roots[main_index] = node;
+        return;
+    }
+    /* Otherwise, recur down the tree */
+    if (compare_tree_nodes(roots[main_index], node, main_index) > 0)
+        tree_insert(roots[main_index]->left, node, main_index);
+    else if (compare_tree_nodes(roots[main_index], node, main_index) < 0)
+        tree_insert(roots[main_index]->right, node, main_index);
+    else
+        fprintf(stderr,"ERROR generating tree, two equal people!\nPlease chose another student number.\n");
+        exit(1);
 }
-
 
 //
 // tree search routine (place your code here)
 //
 
-tree_node_t *find( ... )
+tree_node_t *find(tree_node_t *root, tree_node_t node, int main_index)
 {
-}
+    if (root == NULL)
+        return NULL;
 
+    if (compare_tree_nodes(root, &node, main_index) > 0)
+        return find(root->left[main_index], node, main_index);
+    else if (compare_tree_nodes(root, &node, main_index) < 0)
+        return find(root->right[main_index], node, main_index);
+    else
+        return root;
+}
 
 //
 // tree depdth
 //
 
-int tree_depth( ... )
+int tree_depth(tree_node_t *root, int main_index)
 {
-}
+    if (root == NULL)
+        return 0;
 
+    int l = tree_depth(root->left[main_index], main_index);
+    int r = tree_depth(root->right[main_index], main_index);
+
+    if (l > r)
+        return l + 1;
+
+    return r + 1;
+}
 
 //
 // list, i,e, traverse the tree (place your code here)
 //
 
-int list( ... )
+void list(tree_node_t *root, int main_index)
 {
+    if (root != NULL)
+    {
+        list(root->left[main_index], main_index);
+        printf("Person #\n");
+        printf("    name --------------- %s\n", root->name);
+        printf("    zip code ----------- %s\n", root->zip_code);
+        printf("    telephone number --- %s\n", root->telephone_number);
+        list(root->right[main_index], main_index);
+    }
 }
-
 
 //
 // main program
@@ -142,7 +177,7 @@ int main(int argc,char **argv)
     roots[main_index] = NULL;
   for(int i = 0;i < n_persons;i++)
     for(int main_index = 0;main_index < 3;main_index++)
-      ... ; // place your code here to insert &(persons[i]) in the tree with number main_index
+        tree_insert(roots, &persons[i], main_index); // place your code here to insert &(persons[i]) in the tree with number main_index
   dt = cpu_time() - dt;
   printf("Tree creation time (%d persons): %.3es\n",n_persons,dt);
   // search the tree
@@ -152,7 +187,7 @@ int main(int argc,char **argv)
     for(int i = 0;i < n_persons;i++)
     {
       tree_node_t n = persons[i]; // make a copy of the node data
-      if(find( ... ) != &(persons[i])) // place your code here to find a given person, searching for it using the tree with number main_index
+      if(find(roots[main_index], n, main_index) != &(persons[i])) // place your code here to find a given person, searching for it using the tree with number main_index
       {
         fprintf(stderr,"person %d not found using index %d\n",i,main_index);
         return 1;
@@ -165,7 +200,7 @@ int main(int argc,char **argv)
   for(int main_index = 0;main_index < 3;main_index++)
   {
     dt = cpu_time();
-    int depth = tree_depth( ... ); // place your code here to compute the depth of the tree with number main_index
+    int depth = tree_depth(roots[main_index], main_index); // place your code here to compute the depth of the tree with number main_index
     dt = cpu_time() - dt;
     printf("Tree depth for index %d: %d (done in %.3es)\n",main_index,depth,dt);
   }
@@ -180,7 +215,7 @@ int main(int argc,char **argv)
       if(main_index > 2)
         main_index = 2;
       printf("List of persons:\n");
-      (void)list( ... ); // place your code here to traverse, in order, the tree with number main_index
+      list(roots[main_index], main_index); // place your code here to traverse, in order, the tree with number main_index
     }
     // place your own options here
   }
