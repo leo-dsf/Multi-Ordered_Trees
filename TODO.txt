@@ -1,5 +1,6 @@
-- Estudo estatistico com vários nMecs(10->10000), Qual seria a profundidade max para cada uma das arvores esperadas (nome, zip-code, number)
+- Estudo estatistico com vários nMecs(9999),150000 pessoas. Qual seria a profundidade max para cada uma das arvores esperadas (nome, zip-code, number, cc)
+  Hist1: Depth/N Hist2: Tempo/N 
 
-- Adicionar quarto campo (NIF), terá de ser feito um gerador aleatório de NIF 
+- Adicionar quarto campo (NIF), terá de ser feito um gerador aleatório de NIF ✅
 
-- Criar uma função que lista todas as pessoas que tenham o mesmo zip-code, a pesquisa deve ser eficiente, (-find '3800 string string')
+- Criar uma função que lista todas as pessoas que tenham o mesmo zip-code, a pesquisa deve ser eficiente, (-find '3800 string string') ✅

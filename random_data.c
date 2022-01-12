@@ -8,6 +8,7 @@
 // void random_name(char name[MAX_NAME_SIZE + 1]) --------------------------------------- generate a random name and place it in the name[] array
 // void random_zip_code(char zip_code[MAX_ZIP_CODE_SIZE + 1]) --------------------------- generate a random zip code and place it in the zip_code[] array
 // void random_telephone_number(char telephone_number[MAX_TELEPHONE_NUMBER_SIZE + 1]) --- generate a random telephone number and place it in the telephone_number[] array
+// void random_cc(char cc[MAX_CC_SIZE + 1]) --------------------------------------------- generate a random cc number and place it in the cc[] array
 //
 
 #include <stdio.h>
@@ -1930,6 +1931,17 @@ void random_telephone_number(char telephone_number[MAX_TELEPHONE_NUMBER_SIZE + 1
   if(snprintf(telephone_number,MAX_TELEPHONE_NUMBER_SIZE + 1,"%04d %03d %03d",n1,n2,n3) >= MAX_TELEPHONE_NUMBER_SIZE + 1)
   {
     fprintf(stderr,"telephone number too large (%04d) (%03d (%03d)\n",n1,n2,n3);
+    exit(1);
+  }
+}
+
+void random_cc(char cc[MAX_CC + 1])
+{
+  int n1 = aed_random() % 9000; // 0000..9999
+  int n2 = aed_random() % 9000; // 0000..9999
+  if(snprintf(cc,MAX_CC + 1,"%04d%04d",n1,n2) >= MAX_CC + 1)
+  {
+    fprintf(stderr,"CC too large (%04d%04d)\n",n1,n2);
     exit(1);
   }
 }
