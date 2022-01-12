@@ -2,4 +2,4 @@ Estudo estatistico com vários nMecs(10->10000), Qual seria a profundidade max p
 
 Adicionar quarto campo (NIF), terá de ser feito um gerador aleatório de NIF 
 
-Criar uma função que lista todas as pessoas que tenham o mesmo zip-code, a pesquisa deve ser eficiente
+Criar uma função que lista todas as pessoas que tenham o mesmo zip-code, a pesquisa deve ser eficiente (opção -find '3800 string string')
