@@ -70,7 +70,8 @@ void tree_insert(tree_node_t **roots, tree_node_t *node, int main_index)
         tree_insert(roots[main_index]->right, node, main_index);
     else
     {
-        fprintf(stderr,"ERROR generating tree, two equal people!\nPlease chose another student number.\n");
+        fprintf(stderr,"ERROR generating tree, two equal people!\n");
+        fprintf(stderr,"Please chose another student number.\n");
         exit(1);
     }
 }
