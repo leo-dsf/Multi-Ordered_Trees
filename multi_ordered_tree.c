@@ -135,7 +135,15 @@ void listSameZipCode(tree_node_t *root)
 {
     if (root != NULL)
     {
-        // code
+        if(strcmp(root->zip_code, root->left[1]->zip_code) == 0 || strcmp(root->zip_code, root->right[1]->zip_code) == 0)
+        {
+            listSameZipCode(root->left[1]);
+            printf("Person:\n");
+            printf("    name --------------- %s\n", root->name);
+            printf("    zip code ----------- %s\n", root->zip_code);
+            printf("    telephone number --- %s\n", root->telephone_number);
+            listSameZipCode(root->right[1]);
+        }
     }
 }
 
@@ -238,8 +246,7 @@ int main(int argc, char **argv)
             if (main_index > 2)
                 main_index = 2;
             printf("List of persons:\n");
-            list(roots[main_index],
-                 main_index); // place your code here to traverse, in order, the tree with number main_index
+            list(roots[main_index], main_index); // place your code here to traverse, in order, the tree with number main_index
         }
     }
     // clean up --- don't forget to test your program with valgrind, we don't want any memory leaks
