@@ -117,13 +117,12 @@ int tree_depth(tree_node_t *root, int main_index)
 // list, i,e, traverse the tree (place your code here)
 //
 
-int c1 = 1; // global variable 
 void list(tree_node_t *root, int main_index)
 {
     if (root != NULL)
     {
         list(root->left[main_index], main_index);
-        printf("Person #%d\n", c1++);
+        printf("Person:\n");
         printf("    name --------------- %s\n", root->name);
         printf("    zip code ----------- %s\n", root->zip_code);
         printf("    telephone number --- %s\n", root->telephone_number);
@@ -132,10 +131,9 @@ void list(tree_node_t *root, int main_index)
     }
 }
 //
-// list the people with a given zip code
+// list the people with the same zip code
 //
 
-int c2 = 1; // global variable
 void findZipCode(tree_node_t *root, char *zip_code)
 {
     if (root != NULL)
@@ -143,7 +141,7 @@ void findZipCode(tree_node_t *root, char *zip_code)
         if (strcmp(root->zip_code, zip_code) == 0)
         {
             findZipCode(root->left[1], zip_code);
-            printf("Person #%d\n", c2++);
+            printf("Person:\n");
             printf("    name --------------- %s\n", root->name);
             printf("    zip code ----------- %s\n", root->zip_code);
             printf("    telephone number --- %s\n", root->telephone_number);
@@ -166,6 +164,11 @@ int main(int argc, char **argv)
 {
     double dt;
 
+    FILE *fp1 = fopen("data_depth_tree_0.txt", "w");
+    FILE *fp2 = fopen("data_depth_tree_1.txt", "w");
+    FILE *fp3 = fopen("data_depth_tree_2.txt", "w");
+    FILE *fp4 = fopen("data_depth_tree_3.txt", "w");
+
     // process the command line arguments
     if (argc < 3)
     {
@@ -173,71 +176,77 @@ int main(int argc, char **argv)
         fprintf(stderr, "Recognized options:\n");
         fprintf(stderr, "  -list[N]              # list the tree contents, sorted by key index N (the default is index 0)\n");
         // place a description of your own options here
-        fprintf(stderr, "  -find 'zip code'      # list the people with a given zip code\n");
+        fprintf(stderr, "  -find 'zip code'      # list the people with the same zip code\n");
         return 1;
     }
-    int student_number = atoi(argv[1]);
-    if (student_number < 1 || student_number >= 1000000)
+    // generate nMecs
+    for (int n = 990000; n <= 999999; n++)
     {
-        fprintf(stderr, "Bad student number (%d) --- must be an integer belonging to [1,1000000[\n", student_number);
-        return 1;
-    }
-    int n_people = atoi(argv[2]);
-    if (n_people < 3 || n_people > 10000000)
-    {
-        fprintf(stderr, "Bad number of people (%d) --- must be an integer belonging to [3,10000000]\n", n_people);
-        return 1;
-    }
-    // generate all data
-    tree_node_t *people = (tree_node_t *)calloc((size_t)n_people, sizeof(tree_node_t));
-    if (people == NULL)
-    {
-        fprintf(stderr, "Output memory!\n");
-        return 1;
-    }
-    aed_srandom(student_number);
-    for (int i = 0; i < n_people; i++)
-    {
-        random_name(&(people[i].name[0]));
-        random_zip_code(&(people[i].zip_code[0]));
-        random_telephone_number(&(people[i].telephone_number[0]));
-        random_cc(&(people[i].cc[0]));
-        for (int j = 0; j < 4; j++)
-            people[i].left[j] = people[i].right[j] = NULL; // make sure the pointers are initially NULL
-    }
-    // create the ordered binary trees
-    dt = cpu_time();
-    tree_node_t *roots[4]; // three indices, three roots
-    for (int main_index = 0; main_index < 4; main_index++)
-        roots[main_index] = NULL;
-    for (int i = 0; i < n_people; i++)
-        for (int main_index = 0; main_index < 4; main_index++)
-            tree_insert(roots, &people[i], main_index); // place your code here to insert &(people[i]) in the tree with number main_index
-    dt = cpu_time() - dt;
-    printf("Tree creation time (%d people): %.3es\n", n_people, dt);
-    // search the tree
-    for (int main_index = 0; main_index < 4; main_index++)
-    {
-        dt = cpu_time();
+        int student_number = n;
+        if (student_number < 1 || student_number >= 1000000)
+        {
+            fprintf(stderr, "Bad student number (%d) --- must be an integer belonging to [1,1000000[\n", student_number);
+            return 1;
+        }
+        int n_people = atoi(argv[2]);
+        if (n_people < 3 || n_people > 10000000)
+        {
+            fprintf(stderr, "Bad number of people (%d) --- must be an integer belonging to [3,10000000]\n", n_people);
+            return 1;
+        }
+        // generate all data
+        tree_node_t *people = (tree_node_t *)calloc((size_t)n_people, sizeof(tree_node_t));
+        if (people == NULL)
+        {
+            fprintf(stderr, "Output memory!\n");
+            return 1;
+        }
+        aed_srandom(student_number);
         for (int i = 0; i < n_people; i++)
         {
-            tree_node_t n = people[i];                                  // make a copy of the node data
-            if (find(roots[main_index], n, main_index) != &(people[i])) // place your code here to find a given person, searching for it using the tree with number main_index
+            random_name(&(people[i].name[0]));
+            random_zip_code(&(people[i].zip_code[0]));
+            random_telephone_number(&(people[i].telephone_number[0]));
+            random_cc(&(people[i].cc[0]));
+            for (int j = 0; j < 4; j++)
+                people[i].left[j] = people[i].right[j] = NULL; // make sure the pointers are initially NULL
+        }
+        // create the ordered binary trees
+        dt = cpu_time();
+        tree_node_t *roots[4]; // three indices, three roots
+        for (int main_index = 0; main_index < 4; main_index++)
+            roots[main_index] = NULL;
+        for (int i = 0; i < n_people; i++)
+            for (int main_index = 0; main_index < 4; main_index++)
+                tree_insert(roots, &people[i], main_index); // place your code here to insert &(people[i]) in the tree with number main_index
+        dt = cpu_time() - dt;
+        printf("Tree creation time (%d people): %.3es\n", n_people, dt);
+        // compute the largest tree depdth
+
+
+        for (int main_index = 0; main_index < 4; main_index++)
+        {
+            dt = cpu_time();
+            int depth = tree_depth(roots[main_index], main_index); // place your code here to compute the depth of the tree with number main_index
+            dt = cpu_time() - dt;
+            printf("Tree depth for index %d: %d (done in %.3es)\n", main_index, depth, dt);
+            //Write max depth in file (n, max depth)
+            if (main_index == 0){
+                fprintf(fp1, "%d %d\n", student_number, depth);
+            }else if (main_index == 1)
             {
-                fprintf(stderr, "person %d not found using index %d\n", i, main_index);
-                return 1;
+                fprintf(fp2, "%d %d\n", student_number, depth);
+            }else if (main_index == 2)
+            {
+                fprintf(fp3, "%d %d\n", student_number, depth);
+            }else if (main_index == 3)
+            {
+                fprintf(fp4, "%d %d\n", student_number, depth);
             }
         }
-        dt = cpu_time() - dt;
-        printf("Tree search time (%d people, index %d): %.3es\n", n_people, main_index, dt);
-    }
-    for (int main_index = 0; main_index < 4; main_index++)
-    {
-        dt = cpu_time();
-        int depth = tree_depth(roots[main_index], main_index); // place your code here to compute the depth of the tree with number main_index
-        dt = cpu_time() - dt;
-        printf("Tree depth for index %d: %d (done in %.3es)\n", main_index, depth, dt);
-    }
+        
+        //Write creation time in file (n, creation time)
+        //fprintf(fp2, "%d %f\n", student_number, dt);
     // process the command line optional arguments
     for (int i = 3; i < argc; i++)
     {
@@ -258,7 +267,9 @@ int main(int argc, char **argv)
             findZipCode(roots[1], argv[i + 1]);
         }
     }
-    // clean up --- don't forget to test your program with valgrind, we don't want any memory leaks
     free(people);
+    }
+    // clean up --- don't forget to test your program with valgrind, we don't want any memory leaks
+    
     return 0;
 }

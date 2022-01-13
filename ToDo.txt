@@ -1,5 +1,7 @@
 - Estudo estatistico com vários nMecs(9999),150000 pessoas. Qual seria a profundidade max para cada uma das arvores esperadas (nome, zip-code, number, cc)
-  Hist1: Depth/N Hist2: Tempo/N 
+  Hist1: Depth/N Hist2: thinking bout it
+
+- Tree Creation time graph (nPeople,time), search time graph with each one of the trees (nPeople,time) (with 102851 and 103360 nMecs)
 
 - Adicionar quarto campo (NIF), terá de ser feito um gerador aleatório de NIF ✅
 
