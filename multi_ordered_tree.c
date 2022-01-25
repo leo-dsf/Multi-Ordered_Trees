@@ -59,7 +59,7 @@ int compare_tree_nodes(tree_node_t *node1, tree_node_t *node2, int main_idx)
 
 void tree_insert(tree_node_t **roots, tree_node_t *node, int main_index)
 {
-    /* If the tree is empty, return a new Node */
+    /* If the tree is empty, the tree will be to equal the node and will not return any value */
     if (roots[main_index] == NULL)
     {
         roots[main_index] = node;
@@ -96,7 +96,7 @@ tree_node_t *find(tree_node_t *root, tree_node_t node, int main_index)
 }
 
 //
-// tree depdth
+// tree depth
 //
 
 int tree_depth(tree_node_t *root, int main_index)
@@ -131,6 +131,7 @@ void list(tree_node_t *root, int main_index)
         list(root->right[main_index], main_index);
     }
 }
+
 //
 // list the people with a given zip code
 //
@@ -165,7 +166,6 @@ void findZipCode(tree_node_t *root, char *zip_code)
 int main(int argc, char **argv)
 {
     double dt;
-
     // process the command line arguments
     if (argc < 3)
     {
@@ -252,7 +252,7 @@ int main(int argc, char **argv)
             list(roots[main_index], main_index); // place your code here to traverse, in order, the tree with number main_index
         }
         // place your own options here
-        if (strcmp(argv[i], "-find") == 0)
+        else if (strcmp(argv[i], "-find") == 0)
         {
             printf("List of people with the zip code: %s\n", argv[i + 1]);
             findZipCode(roots[1], argv[i + 1]);
