@@ -23,8 +23,14 @@ $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 * ```bash -m time(seconds)```
 
 ## How To Run
+* Compile with the following command:
 ```bash
-$ ./netifstat.sh flag(optional) time(seconds)
+$ make all_bin
+```
+
+* Run:
+```bash
+$ ./probSemSharedMemAirLift.sh
 ```
 
 ## Authors
