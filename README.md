@@ -1,5 +1,5 @@
 # Multi Ordered Trees
-Using Bash scripts to see some stats about network and display that on the terminal.
+Implemented Binary Trees in C.
 
 ## Course
 This project was developed under the Algorithms and Data Structures course of [University of Aveiro](https://www.ua.pt/).
