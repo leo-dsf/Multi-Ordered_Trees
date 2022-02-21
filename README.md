@@ -2,7 +2,7 @@
 Using Bash scripts to see some stats about network and display that on the terminal.
 
 ## Course
-This project was developed under the Operating Systems course of [University of Aveiro](https://www.ua.pt/).
+This project was developed under the Algorithms and Data Structures course of [University of Aveiro](https://www.ua.pt/).
 
 ## Installation
 * Clone the repository:
