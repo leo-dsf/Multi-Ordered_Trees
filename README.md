@@ -10,17 +10,11 @@ This project was developed under the Algorithms and Data Structures course of [U
 $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 ```
 ## Flags
-* ```bash -p (number of interfaces) time(seconds)```
-* ```bash -t time(seconds)```
-* ```bash -r time(seconds)```
-* ```bash -T time(seconds)```
-* ```bash -R time(seconds)```
-* ```bash -v time(seconds)```
-* ```bash -c "regex" time(seconds)```
-* ```bash -l time(seconds)```
-* ```bash -b time(seconds)```
-* ```bash -k time(seconds)```
-* ```bash -m time(seconds)```
+* ```-p (number of interfaces) time(seconds)```
+* ```-t time(seconds)```
+* ```-r time(seconds)```
+* ```-T time(seconds)```
+* ```-R time(seconds)```
 
 ## How To Run
 * Compile with the following command:
@@ -30,7 +24,7 @@ $ make multi-ordered_tree
 
 * Run:
 ```bash
-$ ./multi_ordered_tree (random number) (number of people)
+$ ./multi_ordered_tree (random number) (number of people) flag(optional)
 ```
 
 ## Authors
