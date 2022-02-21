@@ -10,11 +10,11 @@ This project was developed under the Algorithms and Data Structures course of [U
 $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 ```
 ## Flags
-* ```-p (number of interfaces) time(seconds)```
-* ```-t time(seconds)```
-* ```-r time(seconds)```
-* ```-T time(seconds)```
-* ```-R time(seconds)```
+* ```-list0```
+* ```-list1```
+* ```-list2```
+* ```-list3```
+* ```-find "zip code"```
 
 ## How To Run
 * Compile with the following command:
