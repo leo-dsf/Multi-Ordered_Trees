@@ -25,12 +25,12 @@ $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 ## How To Run
 * Compile with the following command:
 ```bash
-$ make all_bin
+$ make multi-ordered_tree
 ```
 
 * Run:
 ```bash
-$ ./probSemSharedMemAirLift.sh
+$ ./multi_ordered_tree (random number) (number of people)
 ```
 
 ## Authors
