@@ -1,4 +1,4 @@
-# Multi Ordered Trees
+# Multi-Ordered Trees
 Implemented Binary Trees in C.
 
 ## Course
