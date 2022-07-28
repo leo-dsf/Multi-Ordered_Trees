@@ -1,5 +1,5 @@
 # Multi-Ordered Trees
-Implemented Binary Trees in C.
+Implemented Binary Trees.
 
 ## Course
 This project was developed under the Algorithms and Data Structures course of [University of Aveiro](https://www.ua.pt/).
@@ -9,6 +9,7 @@ This project was developed under the Algorithms and Data Structures course of [U
 ```bash
 $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 ```
+
 ## Flags
 * ```-list0```
 * ```-list1```
