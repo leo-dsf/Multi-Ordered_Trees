@@ -1,5 +1,5 @@
 # Multi-Ordered Trees
-Implemented Binary Trees.
+Binary Trees.
 
 ## Course
 This project was developed under the Algorithms and Data Structures course of [University of Aveiro](https://www.ua.pt/).
@@ -19,18 +19,18 @@ $ git clone https://github.com/leo-dsf/Multi-ordered_trees
 
 ## How To Run
 * Compile with the following command:
-```bash
+```console
 $ make multi-ordered_tree
 ```
 
 * Run:
-```bash
+```console
 $ ./multi_ordered_tree (random number) (number of people) flag(optional)
 ```
 
 ## Authors
-* **Leonardo Flórido**: [leo-dsf](https://github.com/leo-dsf)
-* **Gabriel Hall**: [GabrielHall02](https://github.com/GabrielHall02)
+* **Leonardo Flórido** - [leo-dsf](https://github.com/leo-dsf)
+* **Gabriel Hall** - [GabrielHall02](https://github.com/GabrielHall02)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
