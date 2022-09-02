@@ -7,7 +7,7 @@ This project was developed under the Algorithms and Data Structures course of [U
 ## Installation
 * Clone the repository:
 ```console
-$ git clone https://github.com/leo-dsf/Multi-ordered_trees
+$ git clone https://github.com/leo-dsf/Multi-Ordered_Trees
 ```
 
 ## Flags
